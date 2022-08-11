@@ -9,7 +9,7 @@ public class PostProcessIOS : MonoBehaviour
     [PostProcessBuildAttribute(45)]//must be between 40 and 50 to ensure that it's not overriden by Podfile generation (40) and that it's added before "pod install" (50)
     private static void PostProcessBuild_iOS(BuildTarget target, string buildPath)
     {
-        string podInfo = "\ntarget 'Unity-iPhone' do\n\tpod 'UnityAds','4.2.1'\n\tpod 'KSAdSDK', '3.3.27'\n\tpod 'smaato-ios-sdk', '21.7.6'\n\tpod 'OgurySdk', '2.1.0'\n\tpod 'BaiduMobAdSDK','4.881'\n\tpod 'HyBid','2.14.0'\nend";
+        string podInfo = "";
         if (target == BuildTarget.iOS && podInfo.Length > 0)
         {
 
