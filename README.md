@@ -6,7 +6,7 @@
 
 [PlayerServicesResolver项目地址](https://github.com/googlesamples/unity-jar-resolver)
 
-##使用方法
+## 使用方法
 
 
 1. 将 ParsePod.sh TPPodSet.cs 两个文件放置在一个目录下
