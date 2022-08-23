@@ -20,10 +20,12 @@ public class PostProcessIOS : MonoBehaviour
             }
         }
 
-        //如需要在 info.plist 中添加相关配置可打开以下注释
+        //以下功能可根据实际情况选择使用
+        
+        //info.plist 中添加相关配置  http请求权限，google广告配置，IDFA权限请求设置
         AddSetting(buildPath);
 
-        //快手SDK不支持 bitCode 入使用需要关闭 bitcode
+        //关闭 bitcode 快手SDK不支持 
         CloseBitCode(buildPath);
     }
 
