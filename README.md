@@ -26,7 +26,9 @@
 TPPodSet.cs 会处理  快手 百度 Verve smaato Ogury这几个特殊源的配置问题。
 
 1.快手SDK 由于是动态库无法直接配置在UnityFramework中
+
 2.百度 如果配置在UnityFramework 中会导致SDK无法找到百度的资源包
+
 3.Verve smaato Ogury SDK库中有动态库无法直接配置在 UnityFramework中
 
 
