@@ -6,6 +6,7 @@
 		<iosPod name="TradPlusAdSDK/AdMobAdapter" version="7.9.0"/>
 		<iosPod name="Google-Mobile-Ads-SDK" version="9.7.0"/>
 		<iosPod name="TradPlusAdSDK/UnityAdapter" version="7.9.0"/>
+		<iosPod name="UnityAds" version="4.2.1"/>
 		<iosPod name="TradPlusAdSDK/AppLovinAdapter" version="7.9.0"/>
 		<iosPod name="AppLovinSDK" version="11.4.3"/>
 		<iosPod name="TradPlusAdSDK/TapjoyAdapter" version="7.9.0"/>
@@ -32,9 +33,6 @@
 		<iosPod name="TradPlusAdSDK/YouDaoAdapter" version="7.9.0"/>
 		<iosPod name="YDADSDK" version="2.16.12"/>
 		<iosPod name="TradPlusAdSDK/SmaatoAdapter" version="7.9.0"/>
-		<iosPod name="smaato-ios-sdk/Banner" version="21.7.6"/>
-		<iosPod name="smaato-ios-sdk/Interstitial" version="21.7.6"/>
-		<iosPod name="smaato-ios-sdk/RewardedAds" version="21.7.6"/>
 		<iosPod name="TradPlusAdSDK/MaioAdapter" version="7.9.0"/>
 		<iosPod name="MaioSDK" version="1.6.2"/>
 		<iosPod name="TradPlusAdSDK/MyTargetAdapter" version="7.9.0"/>
