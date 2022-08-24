@@ -21,7 +21,7 @@
 
 注：导出前需要关闭 PlayerServicesResolver 的 Always add the main target to Podfile 这个设置。设置面板路径 Unity菜单 `Assets > External Dependency Manager > iOS Resolver > Settings`
 
-这样当导出从unity项目导出xcode项目时就可以通过pod自动加载相关SDK。
+这样当从unity项目导出xcode项目时就可以通过pod自动加载相关SDK。
         
 TPPodSet.cs 会处理  快手 百度 Verve smaato Ogury这几个特殊源的配置问题。
 
