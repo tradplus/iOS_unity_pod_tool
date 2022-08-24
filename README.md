@@ -15,7 +15,7 @@
 
 3. 将配置覆盖TPPods文件中内容
 
-4. 执行ParsePod.sh，这样就会自动更新 TPPodsDependencies.xml 和 TPPodSet.cs的内容
+4. 在Mac的终端中执行ParsePod.sh，这样就会自动更新 TPPodsDependencies.xml 和 TPPodSet.cs的内容
 
 5. 将TPPodsDependencies.xml 和 TPPodSet.cs 两个文件放置项目中 Assets/ExternalDependencyManager/Editor 此文件夹下
 
