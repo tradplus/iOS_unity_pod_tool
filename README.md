@@ -18,7 +18,7 @@
 
 5. 将TPPodsDependencies.xml 和 TPPodSet.cs 两个文件放置项目中 Assets/ExternalDependencyManager/Editor 此文件夹下
 
-另：如果没有使用 Verve smaato Ogury 快手 百度，不需要使用TPPodSet.cs内其他功能的时，只需要放入TPPodsDependencies.xml 就可以了。
+另：如果没有使用 Verve smaato Ogury 快手 百度，也不需要使用TPPodSet.cs内其他功能的时，只需要放入TPPodsDependencies.xml 就可以了。
 
 这样当从unity项目导出xcode项目时就可以通过pod自动加载相关SDK。
 
