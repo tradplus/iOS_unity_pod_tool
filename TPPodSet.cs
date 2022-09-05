@@ -1,9 +1,9 @@
+#if UNITY_IOS
 using System.IO;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.iOS.Xcode;
-
 public class PostProcessIOS : MonoBehaviour
 {
     [PostProcessBuildAttribute(45)]//must be between 40 and 50 to ensure that it's not overriden by Podfile generation (40) and that it's added before "pod install" (50)
@@ -246,3 +246,4 @@ public class PostProcessIOS : MonoBehaviour
         }
     }
 }
+#endif
