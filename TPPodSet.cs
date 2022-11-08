@@ -149,7 +149,7 @@ public class PostProcessIOS : MonoBehaviour
         //Verve v2.14.0
         string VerveSDKPath = buildPath + "/Pods/Target Support Files/HyBid/";
         pathDir = new DirectoryInfo(VerveSDKPath);
-        //确认pod是否有快手
+        //确认pod是否有Verve
         if (pathDir.Exists)
         {
             string[] sdkPathArray = new string[] {
@@ -169,7 +169,7 @@ public class PostProcessIOS : MonoBehaviour
         //Ogury v2.1.0
         string OgurySDKPath = buildPath + "/Pods/Target Support Files/OgurySdk/";
         pathDir = new DirectoryInfo(OgurySDKPath);
-        //确认pod是否有快手
+        //确认pod是否有Ogury
         if (pathDir.Exists)
         {
             string[] sdkPathArray = new string[] {
@@ -194,9 +194,26 @@ public class PostProcessIOS : MonoBehaviour
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
+
+        //Bigo
+        string BigoSDKPath = buildPath + "/Pods/Target Support Files/BigoADS/";
+        pathDir = new DirectoryInfo(BigoSDKPath);
+        //确认pod是否有Bigo
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/BigoADS/BigoADS\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/BigoADS\"",
+            };
+
+            string[] frameworkArray = new string[] {
+                "-framework \"BigoADS\"",
+                "-framework \"OMSDK_Bigosg\"",
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
     }
-
-
 
     private static void AddFrameworkPath(string buildPath,string[] sdkPathArray,string[] frameworkArray = null,string[] sysFrameworkArray = null)
     {

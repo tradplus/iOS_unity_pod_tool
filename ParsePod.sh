@@ -32,7 +32,7 @@ do
         #KSAdSDK 快手动态库 无法直接添加到 UnityFramework
         #BaiduMobAdSDK 百度其资源包需要放置在主项目中
         #OgurySdk HyBid（Verve） smaato-ios-sdk SDK中有动态库 无法直接添加到 UnityFramework
-        elif [[ $name == 'KSAdSDK' || $name == 'OgurySdk' || $name == 'HyBid' || $name == 'smaato-ios-sdk'|| $name == 'BaiduMobAdSDK' ]]
+        elif [[ $name == 'KSAdSDK' || $name == 'OgurySdk' || $name == 'HyBid' || $name == 'smaato-ios-sdk'|| $name == 'BaiduMobAdSDK' || $name == 'BigoADS' ]]
         then
             UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
         else
