@@ -12,12 +12,18 @@ public class PostProcessIOS : MonoBehaviour
         string podInfo = "";
         if (target == BuildTarget.iOS && podInfo.Length > 0)
         {
-
-            using (StreamWriter sw = File.AppendText(buildPath + "/Podfile"))
+            string path = buildPath + "/Podfile";
+            string Podfile = File.ReadAllText(path);
+            string keyStr = "target 'Unity-iPhone' do";
+            if (Podfile.Contains(keyStr))
             {
-                //in this example I'm adding an app extension
-                sw.WriteLine(podInfo);
+                Podfile = Podfile.Replace(keyStr, podInfo);
             }
+            else
+            {
+                Podfile += podInfo + "end";
+            }
+            File.WriteAllText(path,Podfile);
         }
 
         //以下功能可根据实际情况选择使用

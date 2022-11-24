@@ -46,7 +46,7 @@ echo "</dependencies>" >> $saveFile
     
 if [[ ${#UnityiPhonePod} > 0 ]]
 then
-    UnityiPhonePod="\\\ntarget 'Unity-iPhone' do\\\n${UnityiPhonePod}end"
+    UnityiPhonePod="\\\ntarget 'Unity-iPhone' do\\\n${UnityiPhonePod}"
 fi
 saveString="string podInfo = \"$UnityiPhonePod\";"
 sed -i "" "12d" "$(dirname $0)/TPPodSet.cs"
