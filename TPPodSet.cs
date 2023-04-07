@@ -172,6 +172,22 @@ public class PostProcessIOS : MonoBehaviour
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
 
+        //Fyber v8.2.0
+        string FyberSDKPath = buildPath + "/Pods/Target Support Files/Fyber_Marketplace_SDK/";
+        pathDir = new DirectoryInfo(FyberSDKPath);
+        //确认pod是否有Fyber
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/Fyber_Marketplace_SDK/IASDKCore\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/Fyber_Marketplace_SDK\""};
+
+            string[] frameworkArray = new string[] {
+                "-framework \"IASDKCore\""};
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
+
         //Ogury v2.1.0
         string OgurySDKPath = buildPath + "/Pods/Target Support Files/OgurySdk/";
         pathDir = new DirectoryInfo(OgurySDKPath);

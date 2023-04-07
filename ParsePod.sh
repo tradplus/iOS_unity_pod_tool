@@ -35,6 +35,20 @@ do
         elif [[ $name == 'KSAdSDK' || $name == 'OgurySdk' || $name == 'HyBid' || $name == 'smaato-ios-sdk'|| $name == 'BaiduMobAdSDK' || $name == 'BigoADS' ]]
         then
             UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
+        #Fryer v8.2.0动态库支持
+        elif [[ $name == 'Fyber_Marketplace_SDK' ]]
+        then
+            tempVersion=${version//./}
+            if [ ${#tempVersion} > 3 ]
+            then
+                tempVersion=${tempVersion:0:3}
+            fi
+            if [ $tempVersion -ge 820 ]
+            then
+                UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
+            else
+                echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
+            fi
         else
             echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
         fi
