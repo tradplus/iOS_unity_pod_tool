@@ -26,8 +26,19 @@ do
         #穿山甲&Pangle pod配置
         if [[ $name == 'Ads-CN' ]]
         then
-            echo "\t\t<iosPod name=\"$name/International\" version=\"$version\"/>" >> $saveFile
-            echo "\t\t<iosPod name=\"$name/BUAdSDK\" version=\"$version\"/>" >> $saveFile
+            tempVersion=${version//./}
+                if [ ${#tempVersion} > 4 ]
+            then
+                tempVersion=${tempVersion:0:4}
+            fi
+            #5.2.0.0穿山甲pod版本已拆分
+            if [ $tempVersion -ge 5200 ]
+            then
+                echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
+            else
+                echo "\t\t<iosPod name=\"$name/International\" version=\"$version\"/>" >> $saveFile
+                echo "\t\t<iosPod name=\"$name/BUAdSDK\" version=\"$version\"/>" >> $saveFile
+            fi
         #过滤特殊源的 pod配置
         #KSAdSDK 快手动态库 无法直接添加到 UnityFramework
         #BaiduMobAdSDK 百度其资源包需要放置在主项目中
