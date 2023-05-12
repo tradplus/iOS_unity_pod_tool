@@ -60,7 +60,7 @@ do
             else
                 echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
             fi
-        #Fryer v8.2.0+ 动态库支持
+        #Fyber v8.2.0+ 动态库支持
         elif [[ $name == 'Fyber_Marketplace_SDK' ]]
         then
             tempVersion=${version//./}
