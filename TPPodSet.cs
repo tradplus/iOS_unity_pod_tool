@@ -235,6 +235,24 @@ public class PostProcessIOS : MonoBehaviour
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
+
+        //Start.io
+        string StartIOSDKPath = buildPath + "/Pods/Target Support Files/StartAppSDK/";
+        pathDir = new DirectoryInfo(StartIOSDKPath);
+        //确认pod是否有Start.io
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/StartAppSDK\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/StartAppSDK\"",
+            };
+
+            string[] frameworkArray = new string[] {
+                "-framework \"StartApp\""
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
     }
 
     private static void AddFrameworkPath(string buildPath,string[] sdkPathArray,string[] frameworkArray = null,string[] sysFrameworkArray = null)
