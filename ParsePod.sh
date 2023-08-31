@@ -46,7 +46,7 @@ do
         elif [[ $name == 'KSAdSDK' || $name == 'OgurySdk' || $name == 'HyBid' || $name == 'smaato-ios-sdk'|| $name == 'BaiduMobAdSDK' || $name == 'BigoADS' ]]
         then
             UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
-        #Start.io v4.9.1+ 动态库支持
+        #Start.io v4.9.1 动态库
         elif [[ $name == 'StartAppSDK' ]]
         then
             tempVersion=${version//./}
@@ -54,7 +54,7 @@ do
             then
                 tempVersion=${tempVersion:0:3}
             fi
-            if [ $tempVersion -ge 491 ]
+            if [ $tempVersion -eq 491]
             then
                 UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
             else
