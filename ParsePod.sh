@@ -42,8 +42,8 @@ do
         #过滤特殊源的 pod配置
         #KSAdSDK 快手动态库 无法直接添加到 UnityFramework
         #BaiduMobAdSDK 百度其资源包需要放置在主项目中
-        #OgurySdk HyBid（Verve） smaato-ios-sdk SDK中有动态库 无法直接添加到 UnityFramework
-        elif [[ $name == 'KSAdSDK' || $name == 'OgurySdk' || $name == 'HyBid' || $name == 'smaato-ios-sdk'|| $name == 'BaiduMobAdSDK' || $name == 'BigoADS' ]]
+        #OgurySdk HyBid（Verve） smaato-ios-sdk AmazonPublisherServicesSDK MaioSDK-v2 SDK中有动态库 无法直接添加到 UnityFramework
+        elif [[ $name == 'KSAdSDK' || $name == 'OgurySdk' || $name == 'HyBid' || $name == 'smaato-ios-sdk'|| $name == 'BaiduMobAdSDK' || $name == 'BigoADS' || $name == 'AmazonPublisherServicesSDK' || $name == 'MaioSDK-v2' ]]
         then
             UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
         #Start.io v4.9.1 动态库

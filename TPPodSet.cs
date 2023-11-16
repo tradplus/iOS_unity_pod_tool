@@ -253,6 +253,40 @@ public class PostProcessIOS : MonoBehaviour
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
+        //Maio-v2
+        string MaioDKPath = buildPath + "/Pods/Target Support Files/MaioSDK-v2/";
+        pathDir = new DirectoryInfo(MaioDKPath);
+        //确认pod是否有Start.io
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/MaioSDK-v2\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/MaioSDK-v2\"",
+            };
+
+            string[] frameworkArray = new string[] {
+                "-framework \"Maio\""
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
+        ///AmazonPublisherServicesSDK
+        string AmazonDKPath = buildPath + "/Pods/Target Support Files/AmazonPublisherServicesSDK/";
+        pathDir = new DirectoryInfo(AmazonDKPath);
+        //确认pod是否有Start.io
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/AmazonPublisherServicesSDK/APS_iOS_SDK-4.7.6\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/AmazonPublisherServicesSDK\"",
+            };
+
+            string[] frameworkArray = new string[] {
+                "-framework \"DTBiOSSDK\""
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
     }
 
     private static void AddFrameworkPath(string buildPath,string[] sdkPathArray,string[] frameworkArray = null,string[] sysFrameworkArray = null)
