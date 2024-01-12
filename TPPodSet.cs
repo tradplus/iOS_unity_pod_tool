@@ -237,17 +237,21 @@ public class PostProcessIOS : MonoBehaviour
         //确认pod是否有Bigo
         if (pathDir.Exists)
         {
-            string[] sdkPathArray = new string[] {
-                "\"${PODS_ROOT}/BigoADS/BigoADS\"",
-                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/BigoADS\"",
-            };
+            string podStr = finidString(pathArray, "${PODS_XCFRAMEWORKS_BUILD_DIR}/BigoADS", "\"");
+            if(podStr != null)
+            {
+                string[] sdkPathArray = new string[] {
+                    "\"${PODS_ROOT}/BigoADS/BigoADS\"",
+                    "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/BigoADS\"",
+                };
 
-            string[] frameworkArray = new string[] {
-                "-framework \"BigoADS\"",
-                "-framework \"OMSDK_Bigosg\"",
-            };
-            removeSetting(pathArray, sdkPathArray, frameworkArray);
-            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+                string[] frameworkArray = new string[] {
+                    "-framework \"BigoADS\"",
+                    "-framework \"OMSDK_Bigosg\"",
+                };
+                removeSetting(pathArray, sdkPathArray, frameworkArray);
+                AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+            }
         }
 
         //Start.io
@@ -285,8 +289,8 @@ public class PostProcessIOS : MonoBehaviour
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
         ///AmazonPublisherServicesSDK
-        string AmazonDKPath = buildPath + "/Pods/Target Support Files/AmazonPublisherServicesSDK/";
-        pathDir = new DirectoryInfo(AmazonDKPath);
+        string AmazonSDKPath = buildPath + "/Pods/Target Support Files/AmazonPublisherServicesSDK/";
+        pathDir = new DirectoryInfo(AmazonSDKPath);
         //确认pod是否有Amazon
         if (pathDir.Exists)
         {
@@ -310,6 +314,35 @@ public class PostProcessIOS : MonoBehaviour
             string[] frameworkArray = new string[] {
                 "-framework \"DTBiOSSDK\""
             };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
+        ///Tapjoy 
+        string TapjoySDKPath = buildPath + "/Pods/Target Support Files/TapjoySDK/";
+        pathDir = new DirectoryInfo(TapjoySDKPath);
+        //确认pod是否有Tapjoy
+        if (pathDir.Exists)
+        {
+            string podStr = finidString(pathArray, "${PODS_ROOT}/TapjoySDK/TapjoySDK_iOS_", "\"");
+            string[] sdkPathArray;
+            if (podStr != null)
+            {
+                podStr = "\"" + podStr + "\"";
+                sdkPathArray = new string[] {
+                     podStr,
+                     "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/TapjoySDK\"",
+                 };
+            }
+            else
+            {
+                sdkPathArray = new string[] {
+                     "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/TapjoySDK\"",
+                 };
+            }
+
+            string[] frameworkArray = new string[] {
+                 "-framework \"Tapjoy\""
+             };
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
