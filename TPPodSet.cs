@@ -346,6 +346,23 @@ public class PostProcessIOS : MonoBehaviour
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
+        ///KwaiAdsSDK 
+        string KwaiAdsSDKPath = buildPath + "/Pods/Target Support Files/TradPlusKwaiAdsSDK/";
+        pathDir = new DirectoryInfo(KwaiAdsSDKPath);
+        //确认pod是否有TradPlusKwaiAdsSDK
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/TradPlusKwaiAdsSDK/KwaiAdsSDK\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/TradPlusKwaiAdsSDK\"",
+            };
+
+            string[] frameworkArray = new string[] {
+                "-framework \"KwaiAdsSDK\""
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
     }
 
     private static void AddFrameworkPath(string buildPath,string[] sdkPathArray,string[] frameworkArray = null,string[] sysFrameworkArray = null)
