@@ -363,6 +363,51 @@ public class PostProcessIOS : MonoBehaviour
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
+        //AppLovin
+        string AppLovinSDKPath = buildPath + "/Pods/Target Support Files/AppLovinSDK/";
+        pathDir = new DirectoryInfo(AppLovinSDKPath);
+        //确认pod是否有AppLovin
+        if (pathDir.Exists)
+        {
+            string podStr = finidString(pathArray, "${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-", "\"");
+            string[] sdkPathArray;
+            if (podStr != null)
+            {
+                podStr = "\"" + podStr + "\"";
+                sdkPathArray = new string[] {
+                     podStr,
+                     "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/AppLovinSDK\"",
+                 };
+            }
+            else
+            {
+                sdkPathArray = new string[] {
+                     "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/AppLovinSDK\"",
+                 };
+            }
+            string[] frameworkArray = new string[] {
+                "-framework \"AppLovinSDK\""
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
+        //Inmobi
+        string InmobiSDKPath = buildPath + "/Pods/Target Support Files/InMobiSDK/";
+        pathDir = new DirectoryInfo(InmobiSDKPath);
+        //确认pod是否有Inmobi
+        if (pathDir.Exists)
+        {
+            string[] sdkPathArray = new string[] {
+                "\"${PODS_ROOT}/InMobiSDK\"",
+                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/InMobiSDK\"",
+            };
+
+            string[] frameworkArray = new string[] {
+                "-framework \"InMobiSDK\""
+            };
+            removeSetting(pathArray, sdkPathArray, frameworkArray);
+            AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
     }
 
     private static void AddFrameworkPath(string buildPath,string[] sdkPathArray,string[] frameworkArray = null,string[] sysFrameworkArray = null)

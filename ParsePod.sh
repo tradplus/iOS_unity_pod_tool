@@ -104,6 +104,36 @@ do
             else
                 echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
             fi
+        #AppLovinSDK >= 12.4.1 动态库
+        elif [[ $name == 'AppLovinSDK' ]]
+        then
+            tempVersion=${version//./}
+            if [ ${#tempVersion} > 4 ]
+            then
+                tempVersion=${tempVersion:0:4}
+            fi
+            #4.1.1+ 无动态库
+            if [ $tempVersion -ge 1241 ]
+            then
+                UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
+            else
+                echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
+            fi
+        #InMobiSDK >= 10.7.2 动态库
+        elif [[ $name == 'InMobiSDK' ]]
+        then
+            tempVersion=${version//./}
+            if [ ${#tempVersion} > 4 ]
+            then
+                tempVersion=${tempVersion:0:4}
+            fi
+            #4.1.1+ 无动态库
+            if [ $tempVersion -ge 1072 ]
+            then
+                UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
+            else
+                echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
+            fi
         else
             echo "\t\t<iosPod name=\"$name\" version=\"$version\"/>" >> $saveFile
         fi
