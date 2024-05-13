@@ -69,7 +69,6 @@ do
             then
                 tempVersion=${tempVersion:0:4}
             fi
-            #4.1.1+ 无动态库
             if [ $tempVersion -ge 1330 ]
             then
                 UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
@@ -112,7 +111,6 @@ do
             then
                 tempVersion=${tempVersion:0:4}
             fi
-            #4.1.1+ 无动态库
             if [ $tempVersion -ge 1241 ]
             then
                 UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
@@ -127,7 +125,6 @@ do
             then
                 tempVersion=${tempVersion:0:4}
             fi
-            #4.1.1+ 无动态库
             if [ $tempVersion -ge 1072 ]
             then
                 UnityiPhonePod="$UnityiPhonePod\\\t$line\\\n"
