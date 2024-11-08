@@ -208,25 +208,33 @@ public class PostProcessIOS : MonoBehaviour
         //确认pod是否有Ogury
         if (pathDir.Exists)
         {
-            string[] sdkPathArray = new string[] {
-                "\"${PODS_ROOT}/OguryAds\"",
-                "\"${PODS_ROOT}/OguryChoiceManager\"",
-                "\"${PODS_ROOT}/OguryCore\"",
-                "\"${PODS_ROOT}/OgurySdk\"",
-                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryAds\"",
-                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryAds/OMID\"",
-                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryChoiceManager\"",
-                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryCore\"",
-                "\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OgurySdk\"",
-            };
+            ArrayList sdkPathList = new ArrayList();
+            sdkPathList.Add("\"${PODS_ROOT}/OguryAds\"");
+            sdkPathList.Add("\"${PODS_ROOT}/OguryCore\"");
+            sdkPathList.Add("\"${PODS_ROOT}/OgurySdk\"");
+            sdkPathList.Add("\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryAds\"");
+            sdkPathList.Add("\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryAds/OMID\"");
+            sdkPathList.Add("\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryCore\"");
+            sdkPathList.Add("\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OgurySdk\"");
 
-            string[] frameworkArray = new string[] {
-                "-framework \"OMSDK_Ogury\"",
-                "-framework \"OguryAds\"",
-                "-framework \"OguryChoiceManager\"",
-                "-framework \"OguryCore\"",
-                "-framework \"OgurySdk\"",
-            };
+            ArrayList frameworkList = new ArrayList();
+            frameworkList.Add("-framework \"OMSDK_Ogury\"");
+            frameworkList.Add("-framework \"OguryAds\"");
+            frameworkList.Add("-framework \"OguryCore\"");
+            frameworkList.Add("-framework \"OgurySdk\"");
+            //v5.0.0+ Ogury 不包含 OguryChoiceManager.framework
+            string checkPath = buildPath + "/Pods/Target Support Files/OguryChoiceManager/";
+            DirectoryInfo checkInfo = new DirectoryInfo(checkPath);
+            if(checkInfo.Exists)
+            {
+                sdkPathList.Add("\"${PODS_ROOT}/OguryChoiceManager\"");
+                sdkPathList.Add("\"${PODS_XCFRAMEWORKS_BUILD_DIR}/OguryChoiceManager\"");
+                frameworkList.Add("-framework \"OguryChoiceManager\"");
+            }
+
+            string[] sdkPathArray = (string[])sdkPathList.ToArray(typeof(string));
+            string[] frameworkArray = (string[])frameworkList.ToArray(typeof(string));
+
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
         }
