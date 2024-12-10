@@ -4,6 +4,9 @@ using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.iOS.Xcode;
+using System.Collections;
+using UnityEditor.iOS.Xcode.Extensions;
+
 public class PostProcessIOS : MonoBehaviour
 {
     [PostProcessBuildAttribute(45)]//must be between 40 and 50 to ensure that it's not overriden by Podfile generation (40) and that it's added before "pod install" (50)
@@ -415,6 +418,24 @@ public class PostProcessIOS : MonoBehaviour
             };
             removeSetting(pathArray, sdkPathArray, frameworkArray);
             AddFrameworkPath(buildPath, sdkPathArray, frameworkArray);
+        }
+        //YSO
+        string YSOSDKPath = buildPath + "/Pods/YsoNetworkSDK/";
+        pathDir = new DirectoryInfo(YSOSDKPath);
+        //确认pod是否有YSO
+        if (pathDir.Exists)
+        {
+            string SDKPath = buildPath + "/Pods/YsoNetworkSDK/YsoNetwork.framework";
+            pathDir = new DirectoryInfo(SDKPath);
+            if (pathDir.Exists)
+            {
+                string projectPath = PBXProject.GetPBXProjectPath(buildPath);
+                PBXProject pbxProject = new PBXProject();
+                pbxProject.ReadFromFile(projectPath);
+                string fileGuid = pbxProject.AddFile(SDKPath, "Frameworks/YsoNetwork.framework");
+                pbxProject.AddFileToEmbedFrameworks(pbxProject.GetUnityMainTargetGuid(), fileGuid);
+                pbxProject.WriteToFile(projectPath);
+            }
         }
     }
 
