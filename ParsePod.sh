@@ -145,7 +145,7 @@ then
     UnityiPhonePod="\\\ntarget 'Unity-iPhone' do\\\n\\\tuse_frameworks!\\\n${UnityiPhonePod}"
 fi
 saveString="string podInfo = \"$UnityiPhonePod\";"
-sed -i "" "12d" "$(dirname $0)/TPPodSet.cs"
-sed -i "" "12i\\
+sed -i "" "15d" "$(dirname $0)/TPPodSet.cs"
+sed -i "" "15i\\
         $saveString
 " "$(dirname $0)/TPPodSet.cs"
