@@ -437,6 +437,42 @@ public class PostProcessIOS : MonoBehaviour
                 pbxProject.WriteToFile(projectPath);
             }
         }
+        //Taurusx
+        string TaurusxPath = buildPath + "/Pods/TaurusxAdsSDK/";
+        pathDir = new DirectoryInfo(TaurusxPath);
+        //确认pod是否有Taurusx
+        if (pathDir.Exists)
+        {
+            string SDKPath = buildPath + "/Pods/TaurusxAdsSDK/TaurusxAdsSDK.xcframework";
+            pathDir = new DirectoryInfo(SDKPath);
+            if (pathDir.Exists)
+            {
+                string projectPath = PBXProject.GetPBXProjectPath(buildPath);
+                PBXProject pbxProject = new PBXProject();
+                pbxProject.ReadFromFile(projectPath);
+                string fileGuid = pbxProject.AddFile(SDKPath, "Frameworks/TaurusxAdsSDK.xcframework");
+                pbxProject.AddFileToEmbedFrameworks(pbxProject.GetUnityMainTargetGuid(), fileGuid);
+                pbxProject.WriteToFile(projectPath);
+            }
+        }
+        //KwaiAdsSDK
+        string KwaiAdsPath = buildPath + "/Pods/KwaiAdsSDK/";
+        pathDir = new DirectoryInfo(KwaiAdsPath);
+        //确认pod是否有Taurusx
+        if (pathDir.Exists)
+        {
+            string SDKPath = buildPath + "/Pods/KwaiAdsSDK/KwaiAdsSDK/KwaiAdsSDK.xcframework";
+            pathDir = new DirectoryInfo(SDKPath);
+            if (pathDir.Exists)
+            {
+                string projectPath = PBXProject.GetPBXProjectPath(buildPath);
+                PBXProject pbxProject = new PBXProject();
+                pbxProject.ReadFromFile(projectPath);
+                string fileGuid = pbxProject.AddFile(SDKPath, "Frameworks/KwaiAdsSDK.xcframework");
+                pbxProject.AddFileToEmbedFrameworks(pbxProject.GetUnityMainTargetGuid(), fileGuid);
+                pbxProject.WriteToFile(projectPath);
+            }
+        }
     }
 
     private static void AddFrameworkPath(string buildPath,string[] sdkPathArray,string[] frameworkArray = null,string[] sysFrameworkArray = null)
