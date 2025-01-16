@@ -458,7 +458,7 @@ public class PostProcessIOS : MonoBehaviour
         //KwaiAdsSDK
         string KwaiAdsPath = buildPath + "/Pods/KwaiAdsSDK/";
         pathDir = new DirectoryInfo(KwaiAdsPath);
-        //确认pod是否有Taurusx
+        //确认pod是否有KwaiAds
         if (pathDir.Exists)
         {
             string SDKPath = buildPath + "/Pods/KwaiAdsSDK/KwaiAdsSDK/KwaiAdsSDK.xcframework";
@@ -469,6 +469,37 @@ public class PostProcessIOS : MonoBehaviour
                 PBXProject pbxProject = new PBXProject();
                 pbxProject.ReadFromFile(projectPath);
                 string fileGuid = pbxProject.AddFile(SDKPath, "Frameworks/KwaiAdsSDK.xcframework");
+                pbxProject.AddFileToEmbedFrameworks(pbxProject.GetUnityMainTargetGuid(), fileGuid);
+                pbxProject.WriteToFile(projectPath);
+            }
+        }
+
+        //GDTMobSDK
+        string GDTMobSDKPath = buildPath + "/Pods/GDTMobSDK/";
+        pathDir = new DirectoryInfo(GDTMobSDKPath);
+        //确认pod是否有GDTMobSDK
+        if (pathDir.Exists)
+        {
+            string SDKPath = buildPath + "/Pods/GDTMobSDK/GDTFramework/GDTMobSDK.xcframework";
+            pathDir = new DirectoryInfo(SDKPath);
+            if (pathDir.Exists)
+            {
+                string projectPath = PBXProject.GetPBXProjectPath(buildPath);
+                PBXProject pbxProject = new PBXProject();
+                pbxProject.ReadFromFile(projectPath);
+                string fileGuid = pbxProject.AddFile(SDKPath, "Frameworks/GDTMobSDK.xcframework");
+                pbxProject.AddFileToEmbedFrameworks(pbxProject.GetUnityMainTargetGuid(), fileGuid);
+                pbxProject.WriteToFile(projectPath);
+            }
+
+            SDKPath = buildPath + "/Pods/GDTMobSDK/GDTFramework/Tquic.xcframework";
+            pathDir = new DirectoryInfo(SDKPath);
+            if (pathDir.Exists)
+            {
+                string projectPath = PBXProject.GetPBXProjectPath(buildPath);
+                PBXProject pbxProject = new PBXProject();
+                pbxProject.ReadFromFile(projectPath);
+                string fileGuid = pbxProject.AddFile(SDKPath, "Frameworks/Tquic.xcframework");
                 pbxProject.AddFileToEmbedFrameworks(pbxProject.GetUnityMainTargetGuid(), fileGuid);
                 pbxProject.WriteToFile(projectPath);
             }
